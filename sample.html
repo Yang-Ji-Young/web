@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <meta name="keywords" content="볼록,볼록북,페이스북,인스타그램,카카오스토리,트위터,트윗북,티스토리,포토북,싸이월드,책만들기,밴드북,Bollog,BollogBook,Facebook,Cyworld,Band,instagram,kakaostory,twitter,tistory,photobook" />
+    <meta name="description" content="볼록북은 SNS의 기록들을 책으로 만들어드리는 서비스입니다." />
+
+    <link rel="canonical" href="https://www.bollogbook.com">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="볼록북ㅡ베스트 SNS 포토북">
+    <meta property="og:description" content="볼록북은 SNS의 기록들을 책으로 만들어드리는 서비스입니다.">
+    <meta property="og:image" content="https://www.bollogbook.com/img/logo/bollog.png">
+    <meta property="og:url" content="https://www.bollogbook.com">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="볼록북ㅡ베스트 SNS 포토북">
+    <meta name="twitter:description" content="볼록북은 SNS의 기록들을 책으로 만들어드리는 서비스입니다.">
+    <meta name="twitter:image" content="https://www.bollogbook.com/img/logo/bollog.png">
+    <meta name="twitter:domain" content="https://www.bollogbook.com">
+
+		<title>볼록북ㅡ베스트 SNS 포토북</title>
+		
+		<!--<link rel="stylesheet" href="/css/plugin/swiper.min.css">-->
+		<link rel="stylesheet" href="/css/plugin/font_awesome.min.css">
+		<link rel="stylesheet" href="/css/plugin/swiper.css">
+		<link rel="stylesheet" href="/css/assets/style.css">
+		<link rel="stylesheet" href="/css/assets/main.css">
+
+		
+		<script type="text/javascript" src="/js/assets/bollogbook.js"></script>
+		<script type="text/javascript" src="/js/plugin/swiper.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('.alert_pop').click(function(){
+					popAlert('팝업 테스트', '냉무');
+				});
+				
+
+				$('.confimr_pop').click(function(){
+					var ele = '';
+					ele += ('<div>태그 태스트</div>');
+
+					//popConfirm('팝업 테스트', ele);
+					popConfirm('팝업 테스트', '냉무');
+				});
+				
+			});
+		</script>
+
+ </head>
+ <body>
+	<!-- 
+		* 버튼 사이즈
+			btn_sm
+			btn_normal
+			btn_big
+
+		* checkbox, radio color
+			label_sm
+			label_normal
+			label_big
+
+		* 버튼, checkbox, radio color
+			btn_basic
+			btn_gray
+			btn_blue
+			btn_red
+			btn_yellow
+			btn_green
+
+			- +active 선택된 버튼 색상
+		
+		* radius 설정
+			radius3 ~ radius30
+
+	-->
+	<section class="content pa20">
+		<div>
+			<h1 class="pa10">팝업 Smaple</h5>
+			<a href="#" class="btn_sm radius3 btn_basic alert_pop">팝업 Alert</a>
+			<a href="#" class="btn_sm radius3 btn_basic active confimr_pop">팝업 Confirm</a>
+		</div>
+
+		<div class="mt15">
+			<h1 class="pa10">checkbox</h5>
+			<ul class="inline_block">
+				<li class="left" style="margin:0 5px">
+					<input type="checkbox" name="checkbox" id="check01">
+					<label for="check01">
+						<div class="radius2 label_sm btn_basic">
+							<span class="fas fa-check"></span>
+						</div>
+					</label>
+				</li>
+				<li class="left" style="margin:0 5px">
+					<input type="checkbox" name="checkbox" id="check02">
+					<label for="check02">
+						<div class="radius2 label_sm btn_gray">
+							<span class="fas fa-check"></span>
+						</div>
+					</label>
+				</li>
+				<li class="left" style="margin:0 5px">
+					<input type="checkbox" name="checkbox" id="check03">
+					<label for="check03">
+						<div class="radius2 label_sm btn_blue">
+							<span class="fas fa-check"></span>
+						</div>
+					</label>
+				</li>
+				<li class="left" style="margin:0 5px">
+					<input type="checkbox" name="checkbox" id="check04">
+					<label for="check04">
+						<div class="radius2 label_sm btn_red">
+							<span class="fas fa-check"></span>
+						</div>
+					</label>
+				</li>
+				<li class="left" style="margin:0 5px">
+					<input type="checkbox" name="checkbox" id="check05">
+					<label for="check05">
+						<div class="radius2 label_sm btn_yellow">
+							<span class="fas fa-check"></span>
+						</div>
+					</label>
+				</li>
+				<li class="left" style="margin:0 5px">
+					<input type="checkbox" name="checkbox" id="check06">
+					<label for="check06">
+						<div class="radius2 label_sm btn_green">
+							<span class="fas fa-check"></span>
+						</div>
+					</label>
+				</li>
+
+				<li class="left" style="margin:0 5px">
+					<input type="checkbox" name="checkbox" id="check07">
+					<label for="check07">
+						<div class="radius30 label_normal btn_basic">
+							<span class="fas fa-check"></span>
+						</div>
+					</label>
+				</li>
+				<li class="left" style="margin:0 5px">
+					<input type="checkbox" name="checkbox" id="check08">
+					<label for="check08">
+						<div class="radius30 label_normal btn_basic">
+							<span class="fas fa-check"></span>
+						</div>
+					</label>
+				</li>
+				<li class="left" style="margin:0 5px">
+					<input type="checkbox" name="checkbox" id="check09">
+					<label for="check09">
+						<div class="btn_sm btn_basic">
+							버튼 체크 박스
+						</div>
+					</label>
+				</li>
+				<li class="left" style="margin:0 5px">
+					<input type="checkbox" name="checkbox" id="check10">
+					<label for="check10">
+						<div class="btn_sm btn_gray">
+							버튼 체크 박스
+						</div>
+					</label>
+				</li>
+			</ul>
+		</div>
+
+		<div>
+			<h1 class="pa10">radio</h5>
+			<ul class="inline_block">
+				<li class="left" style="margin:0 5px">
+					<input type="radio" name="radio" id="radio01">
+					<label for="radio01">
+						<div class="label_sm radius2 btn_basic left">
+							<span class="fas fa-check"></span>
+						</div>
+						가나다라마
+					</label>
+				</li>
+				<li class="left" style="margin:0 5px">
+					<input type="radio" name="radio" id="radio02">
+					<label for="radio02">
+						<div class="label_sm radius2 btn_gray left">
+							<span class="fas fa-check"></span>
+						</div>
+						가나다라마
+					</label>
+				</li>
+
+				<li class="left" style="margin:0 5px">
+					<input type="radio" name="radio" id="radio03">
+					<label for="radio03">
+						<div class="label_sm radius30 btn_basic left">
+							<span class="fas fa-circle"></span>
+						</div>
+						가나다라마
+					</label>
+				</li>
+				<li class="left" style="margin:0 5px">
+					<input type="radio" name="radio" id="radio04">
+					<label for="radio04">
+						<div class="label_sm radius30 btn_blue left">
+							<span class="fas fa-circle"></span>
+						</div>
+						가나다라마
+					</label>
+				</li>
+
+				<li class="left" style="margin:0 5px">
+					<input type="radio" name="radio" id="radio05">
+					<label for="radio05">
+						<div class="label_sm radius30 btn_red left">
+							<span class="fas fa-circle"></span>
+						</div>
+						가나다라마
+					</label>
+				</li>
+
+				<li class="left" style="margin:0 5px">
+					<input type="radio" name="radio" id="radio06">
+					<label for="radio06">
+						<div class="btn_sm btn_gray">
+							버튼 체크 박스
+						</div>
+					</label>
+				</li>
+
+				<li class="left" style="margin:0 5px">
+					<input type="radio" name="radio" id="radio07">
+					<label for="radio07">
+						<div class="btn_sm btn_gray">
+							버튼 체크 박스
+						</div>
+					</label>
+				</li>
+
+			
+			</ul>
+		</div>
+		
+		<div>
+			<h1 class="pa10">버튼 Type</h5>
+			
+			<a href="#" class="btn_sm radius3 btn_basic">버튼</a>
+			<a href="#" class="btn_sm radius3 btn_basic active">버튼</a>
+
+			<a href="#" class="btn_sm radius15 btn_basic">버튼</a>
+			<a href="#" class="btn_sm radius15 btn_basic active">버튼</a>
+
+			<a href="#" class="btn_sm radius15 btn_gray">버튼</a>
+			<a href="#" class="btn_sm radius15 btn_gray active">버튼</a>
+
+			<a href="#" class="btn_sm radius15 btn_blue">버튼</a>
+			<a href="#" class="btn_sm radius15 btn_blue active">버튼</a>
+
+			<a href="#" class="btn_sm radius15 btn_red">버튼</a>
+			<a href="#" class="btn_sm radius15 btn_red active">버튼</a>
+
+			<a href="#" class="btn_sm radius15 btn_yellow">버튼</a>
+			<a href="#" class="btn_sm radius15 btn_yellow active">버튼</a>
+
+			<a href="#" class="btn_sm radius15 btn_green">버튼</a>
+			<a href="#" class="btn_sm radius15 btn_green active">버튼</a>
+		</div>
+
+
+	</section>
+	
+
+
+	
+
+ </body>
+</html>

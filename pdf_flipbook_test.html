@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+	<meta name="keywords" content="볼록,볼록북,페이스북,인스타그램,카카오스토리,트위터,트윗북,티스토리,포토북,싸이월드,책만들기,밴드북,Bollog,BollogBook,Facebook,Cyworld,Band,instagram,kakaostory,twitter,tistory,photobook" />
+	<meta name="description" content="볼록북은 SNS의 기록들을 책으로 만들어드리는 서비스입니다." />
+
+	<link rel="canonical" href="https://www.bollogbook.com">
+	<link rel="shortcut icon" href="/favicon.ico" />
+
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="볼록북ㅡ베스트 SNS 포토북">
+	<meta property="og:description" content="볼록북은 SNS의 기록들을 책으로 만들어드리는 서비스입니다.">
+	<meta property="og:image" content="https://www.bollogbook.com/img/logo/bollog.png">
+	<meta property="og:url" content="https://www.bollogbook.com">
+
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="볼록북ㅡ베스트 SNS 포토북">
+	<meta name="twitter:description" content="볼록북은 SNS의 기록들을 책으로 만들어드리는 서비스입니다.">
+	<meta name="twitter:image" content="https://www.bollogbook.com/img/logo/bollog.png">
+	<meta name="twitter:domain" content="https://www.bollogbook.com">
+
+	<title>볼록북ㅡ베스트 SNS 포토북</title>
+
+	<link rel="stylesheet" href="/css/plugin/font_awesome.min.css">
+	<link rel="stylesheet" href="/css/plugin/material_icon.css">
+	<link rel="stylesheet" href="/css/assets/style.css">
+	<script type="text/javascript" src="/js/plugin/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/plugin/turn.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+</head>
+
+<body>
+
+	<div class="flip_book flipbook "></div>
+
+	<div id="controls">
+		<label for="page-number">Page:</label>
+		<input type="text" size="3" class="page-number"> of <span class="number-pages"></span>
+	</div>
+
+<script type="text/javascript">
+
+	var numberOfPages = 0;
+	var url = '/img/assets/pdf/BOLLOG_BOOK_English.pdf';
+
+	var rendered = [];
+	var firstPagesRendered = false;
+
+	var pdf 		= null;
+	var pageNum = 1;
+	// 크기 조절
+	var scale 	= 0.8;
+
+	$(document).ready(function(){
+
+		pdfjsLib.getDocument(url).promise.then(function(pdfDoc) {
+			numberOfPages = pdfDoc.numPages;
+			pdf = pdfDoc;
+
+			$('.flip_book').turn.pages = numberOfPages;
+
+			$('.flip_book').turn({
+				// width: 1248,
+				// height: 430,
+				acceleration: false,
+				pages: numberOfPages,
+				elevation: 50,
+				gradients: !$.isTouch,
+				when: {
+					turning: function(e, page, view) {
+						var range = $(this).turn('range', page);
+						console.log(page, view, range);
+						for (page = range[0]; page<=range[1]; page++) {
+							addPage(page, $(this));
+						};
+					},
+					turned: function(e, page) {
+						$('.page-number').val(page);
+						if (firstPagesRendered) {
+							var range=$(this).turn('range', page);
+							for (page=range[0]; page<=range[1]; page++) {
+								if (!rendered[page]) {
+									renderPage(page); rendered[page]=true;
+								}
+							};
+						}
+					}, missing : function(e, page){
+
+						var n = numberOfPages;
+						n = n > 6 ? (6 + 1) : n;
+						for (var page = 1; page < n; page++){
+							addPage(page, $(this));
+							renderPage(page);
+							rendered[page] = true;
+						}
+						firstPagesRendered = true;
+					}
+				}
+			});
+
+			$('.number-pages').html(numberOfPages);
+			$('.page-number').keydown(function(e){
+				var p = $('#page-number').val();
+				if (e.keyCode==13) {
+					$('.flip_book').turn('page', p);
+					renderPage(p);
+				}
+			});
+		});
+	});
+
+	$(document).keydown(function(e){
+		if (e.target && e.target.tagName.toLowerCase()!='input'){
+			if (e.keyCode==37){
+				$('.flip_book').turn('previous');
+			} else if (e.keyCode==39) {
+				$('.flip_book').turn('next');
+			}
+		}
+	});
+
+	function renderPage(num) {
+
+		pdf.getPage(num).then(function(page) {
+			viewport = page.getViewport({scale : scale});
+
+			var canvasID = 'canv' + num;
+			var canvas = $('#' + canvasID)[0];
+
+			if (canvas == null){
+				return;
+			}
+
+			var context = canvas.getContext('2d');
+
+			canvas.height = viewport.height;
+			canvas.width = viewport.width;
+
+			var renderContext = {
+				canvasContext: context,
+				viewport: viewport
+			};
+
+			page.render(renderContext);
+
+			// rendering 여부 확인
+			// var renderTask = page.render(renderContext);
+			// renderTask.promise.then(function () {
+			// 	console.log(canvasID+'Page rendered');
+			// });
+
+			$('.page-number').text(pageNum);
+			$('.number-pages').text(pdf.numPages);
+			// 플립북 pdf사이즈에 맞게 재조절
+			$('.flip_book').turn('size',(canvas.width * 2), canvas.height)
+		});
+	}
+
+	function addPage(page, book) {
+		if (!book.turn('hasPage', page)) {
+			var element = $('<div />', {'id': 'page-'+page});
+			element.html('<div class="data"><canvas id="canv' + page + '"></canvas></div><div class="gradient"></div>');
+			book.turn('addPage', element, page);
+		}
+	}
+</script>
+</body>
+
+</html>
